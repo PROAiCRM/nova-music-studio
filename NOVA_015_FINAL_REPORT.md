@@ -12,8 +12,9 @@ Date: 2026-10-15
 ## Publication
 
 - Repository: https://github.com/PROAiCRM/nova-music-studio
-- Planned GitHub Pages address: https://proaicrm.github.io/nova-music-studio/
+- GitHub Pages address: https://proaicrm.github.io/nova-music-studio/ (confirmed HTTPS `200` with HSTS).
 - Product source commit: `4234c697f3ed485d5f565c525c5fb68fc15820c5`.
+- Deployment head at HTTPS verification: `7eb21cc42755ba04869bdc55c602ba464ed645e4`.
 
 ## Automated evidence
 
@@ -32,7 +33,6 @@ Date: 2026-10-15
 
 ## Remaining owner verification
 
-- GitHub Pages must be confirmed by an actual HTTPS `200` after its deployment completes.
 - Live schema, Auth settings, RLS policies, Storage policies, and advisors require a project-management Supabase OAuth/CLI session; no migration was replayed without that access.
 - Real two-device Mac ↔ iPhone verification cannot be substituted by emulation. Use the published `qa/` test screen with a separate test account and synthetic WAV, then clean up its test object and metadata.
 - Do not import personal music until the owner has passed that real-device test and retained a full local backup.
