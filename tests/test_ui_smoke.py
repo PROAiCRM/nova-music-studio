@@ -4,7 +4,7 @@ root=Path(__file__).resolve().parents[1]
 html=(root/'index.html').read_text()
 checks=0
 with sync_playwright() as p:
-    browser=p.chromium.launch(headless=True,executable_path='/usr/bin/chromium',args=['--no-sandbox'])
+    browser=p.chromium.launch(headless=True)
     for width,height in [(390,844),(768,1024),(1440,900)]:
         page=browser.new_page(viewport={'width':width,'height':height})
         errors=[];page.on('pageerror',lambda e:errors.append(str(e)))

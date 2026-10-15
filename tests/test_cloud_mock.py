@@ -9,7 +9,7 @@ config='window.NOVA_CLOUD_CONFIG = {url:"https://example.supabase.co",publishabl
 html=re.sub(r'window\.NOVA_CLOUD_CONFIG\s*=\s*Object\.freeze\(\{.*?\}\);',config,html,flags=re.S)
 assert config in html
 with sync_playwright() as p:
- browser=p.chromium.launch(headless=True,executable_path='/usr/bin/chromium',args=['--no-sandbox'])
+ browser=p.chromium.launch(headless=True)
  page=browser.new_page(viewport={'width':390,'height':844})
  failures=[];page.on('pageerror',lambda e:failures.append(str(e)))
  page.set_content(html,wait_until='domcontentloaded')

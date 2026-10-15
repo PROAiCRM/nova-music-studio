@@ -4,7 +4,7 @@ root=Path(__file__).resolve().parents[1]
 html=(root/'index.html').read_text()
 checks=0
 with sync_playwright() as p:
-    browser=p.chromium.launch(headless=True,executable_path='/usr/bin/chromium',args=['--no-sandbox'])
+    browser=p.chromium.launch(headless=True)
     for w,h in [(375,812),(390,844),(430,932),(768,1024),(1024,768),(1440,900)]:
       for theme in ('light','graphite'):
         page=browser.new_page(viewport={'width':w,'height':h})

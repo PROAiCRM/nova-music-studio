@@ -1,16 +1,15 @@
 # NOVA Music Studio — GitHub Pages ready
 
-**Version:** NOVA 014.1 (2026-10-15)  
+**Version:** NOVA 015 (2026-10-15)  
 **UI canon:** NUMERA Native 014 — no restyling.  
-**Status:** prepared release; not published on GitHub Pages yet.
+**Status:** public release candidate; GitHub Pages deployment is configured from `main`.
 
-The root `index.html` is a static HTML music workspace and manual ACE Music handoff. Supabase private media synchronization requires **explicit login** and clicking Upload/Download. It is **not** a proven commercial service.
+The root `index.html` is a static HTML music workspace and manual ACE Music handoff. Supabase private media synchronization requires **explicit login** and clicking Upload/Download. It is opt-in and never overwrites or deletes a local song.
 
 ## Publishing
-1. Create a **new public** GitHub repository `PROAiCRM/nova-music-studio` with a README.
-2. Upload these files to a fresh branch (prefer PR and review) and merge into `main` when the owner approves.
-3. Settings → Pages → Deploy from a branch → `main` → `/(root)` → Save.
-4. Verify actual HTTPS URL `https://proaicrm.github.io/nova-music-studio/`.
+1. The public repository is `PROAiCRM/nova-music-studio`.
+2. GitHub Pages deploys from `main` at `/(root)`.
+3. Verify actual HTTPS URL `https://proaicrm.github.io/nova-music-studio/` after each published revision.
 5. Configure **Supabase Authentication → URL Configuration** for the public address before exercising real account signup, and verify email redirect behavior. Auth configuration is not verified here.
 6. Never upload personal audio files or server-side secrets into the repository.
 
