@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>NOVA — Cloud QA 014.2</title>
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; connect-src https://hgvxvcljlwclbucaoicl.supabase.co; script-src 'unsafe-inline'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<style>
+:root{color-scheme:light;--bg:#e5e7e8;--fg:#252a2f;--muted:#646b72;--raised:#ecedee;--inset:#dfe2e4;--line:#d9dcdf;--accent:#373e46;--shadow:8px 8px 20px #c4c7c9,-8px -8px 20px #fff;--shadow-inset:inset 4px 4px 11px #c5c8ca,inset -4px -4px 11px #f9fafb}
+@media(prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#24272a;--fg:#f1f2f3;--muted:#b0b4b8;--raised:#292d31;--inset:#202326;--line:#2d3033;--accent:#e4e7e9;--shadow:7px 7px 19px #1a1c1e,-7px -7px 19px #303438;--shadow-inset:inset 4px 4px 10px #191c1e,inset -4px -4px 10px #2e3336}}
+*{box-sizing:border-box}body{background:var(--bg);color:var(--fg);font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;margin:0;padding:24px 18px calc(30px + env(safe-area-inset-bottom));line-height:1.48}.wrap{max-width:660px;margin:auto}header{padding:14px 0 22px}h1{font-size:27px;letter-spacing:-.8px;margin:4px 0 8px}h2{font-size:17px;margin:0 0 12px}p{margin:8px 0 12px}small,.muted{color:var(--muted);font-size:13px}.label{display:block;color:var(--muted);font-size:13px;margin:12px 0 5px}main{display:grid;gap:18px}.panel{background:var(--raised);border-radius:24px;box-shadow:var(--shadow);padding:22px 20px}input{display:block;width:100%;font-size:16px;padding:14px 16px;border:0;border-radius:14px;background:var(--inset);box-shadow:var(--shadow-inset);color:var(--fg);outline-offset:3px}button{font:inherit;min-height:46px;border:0;border-radius:14px;cursor:pointer;background:var(--raised);color:var(--fg);box-shadow:var(--shadow);padding:11px 16px;font-weight:610}button:active{box-shadow:var(--shadow-inset)}button:disabled{opacity:.45;cursor:not-allowed}.primary{background:var(--fg);color:var(--bg);box-shadow:2px 5px 15px #0002}.actions{display:flex;flex-wrap:wrap;gap:12px;margin:14px 0 0}.actions button{flex:1 1 160px}.state{border-radius:13px;background:var(--inset);padding:12px;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere;margin-top:14px}.pill{font-size:12px;padding:4px 10px;border-radius:99px;background:var(--inset);display:inline-block}.pass{color:#227851}.fail{color:#ba4a49}.note{font-size:13px;color:var(--muted)}.hidden{display:none!important}a{color:inherit;font-weight:650}#shareUrl{font-family:ui-monospace,SFMono-Regular,monospace}button:focus-visible,input:focus-visible{outline:2px solid var(--fg);outline-offset:3px}@media(max-width:420px){body{padding:14px 14px 32px}h1{font-size:25px}.panel{padding:20px 16px;border-radius:21px}.actions button{flex-basis:100%}}
+</style>
+</head><body><div class="wrap">
+<header><span class="pill">NOVA Cloud · QA 014.2</span><h1>Проверка двух устройств</h1><p class="muted">Не затрагивает личную музыку. Проверяем настоящую авторизацию и перенос только синтетического WAV через приватное облако.</p></header>
+<main>
+<section class="panel"><h2>1 · Вход в тестовый аккаунт</h2><p class="note">Используй отдельный тестовый email, доступный тебе. Если создаёшь аккаунт впервые, подтверди адрес в письме Supabase. На iPhone войди с тем же email и паролем. Пароль не сохраняется этим инструментом.</p><label class="label" for="email">Email</label><input id="email" type="email" autocomplete="email" placeholder="test@example.com"><label class="label" for="password">Пароль · минимум 10 символов</label><input id="password" type="password" autocomplete="current-password" placeholder="Пароль"><div class="actions"><button id="signup">Создать аккаунт</button><button class="primary" id="signin">Войти</button><button id="signout" disabled>Выйти</button></div><div id="authstatus" class="state" role="status">Вход не выполнен. Облако не опрашивается до нажатия.</div></section>
+<section class="panel"><h2>2 · Mac: создать тест</h2><p class="note">Будет сгенерирован только синтетический звуковой сигнал длительностью 1,25 с (не личная песня). После загрузки получишь ссылку для iPhone.</p><div class="actions"><button class="primary" id="create" disabled>Создать и отправить WAV</button></div><div class="state" id="createStatus">Ожидание авторизации</div><label class="label" for="shareUrl">Ссылка на тест для iPhone (без ключей и паролей)</label><input id="shareUrl" type="text" readonly placeholder="Появится после создания"><div class="actions"><button id="copyLink" disabled>Скопировать ссылку</button></div></section>
+<section class="panel"><h2>3 · iPhone: проверить перенос</h2><p class="note">Открой ссылку из шага 2 на iPhone, войди в тот же тестовый аккаунт и нажми «Проверить». Проверяются права, размер и SHA-256 скачанного аудио.</p><label class="label" for="testId">ID теста</label><input id="testId" placeholder="Подставится автоматически из ссылки" autocomplete="off"><label class="label" for="testOwner">ID владельца теста (для проверки изоляции)</label><input id="testOwner" placeholder="Подставится из ссылки" autocomplete="off"><div class="actions"><button class="primary" id="verify" disabled>Проверить на устройстве</button></div><div id="verifyStatus" class="state">Проверка не запускалась</div></section>
+<section class="panel"><h2>4 · Удалить тест и скачать отчёт</h2><p class="note">На Mac вернись сюда под исходным тестовым аккаунтом. Удаление доступно только владельцу теста. Это не затрагивает песни NOVA и бакет nova-audio.</p><div class="actions"><button id="cleanup" disabled>Удалить тестовые данные</button><button id="report">Скачать отчёт JSON</button></div><div id="cleanupStatus" class="state">Ничего не удалено</div></section>
+</main><p class="note" style="margin-top:25px">QA-контур: таблица <code>nova_qa_records</code> и приватный бакет <code>nova-qa-audio</code>. Отчёт не содержит email, паролей, JWT или аудиофайлов. Сетевые запросы направляются только в официальный проект NOVA Supabase.</p></div>
+<script>
+'use strict';
+const BASE='https://hgvxvcljlwclbucaoicl.supabase.co';
+const API='sb_publishable_U67OetmVH-CNe1wnTVAywQ_9j47_Cd8';
+const BUCKET='nova-qa-audio';
+const $=id=>document.getElementById(id);
+let session=null,busy=false;
+let report={suite:'NOVA_014_2_REAL_DEVICE_QA',version:'1.0',generatedAt:new Date().toISOString(),checks:[]};
+let currentId='',ownerId='';
+const qs=new URLSearchParams(location.search);
+if(/^[0-9a-f-]{36}$/i.test(qs.get('test')||'')) {currentId=qs.get('test');$('testId').value=currentId;}
+if(/^[0-9a-f-]{36}$/i.test(qs.get('owner')||'')) {ownerId=qs.get('owner');$('testOwner').value=ownerId;}
+function note(n,status,detail){report.checks.push({name:n,status,detail:detail||'',time:new Date().toISOString()});}
+function buttons(){const signed=!!session?.token;for(const id of ['create','verify','cleanup'])$(id).disabled=!signed||busy;$('signout').disabled=!signed||busy;for(const id of ['signin','signup'])$(id).disabled=busy;}
+function safeError(e){return String(e?.message||e).replace(/[\n\r]+/g,' ').slice(0,180)}
+async function call(path,{method='GET',body,auth=true,headers={}}={}){
+ const h={'apikey':API,...headers};if(auth){if(!session?.token)throw Error('Сначала войди');h.Authorization='Bearer '+session.token}
+ let resp;try{resp=await fetch(BASE+path,{method,headers:h,body,cache:'no-store',mode:'cors',credentials:'omit'})}catch{throw Error('Нет HTTPS-соединения с NOVA Cloud')}
+ if(!resp.ok){let msg='HTTP '+resp.status;try{const e=await resp.json();msg+=(': '+String(e.message||e.error_description||e.error||'').slice(0,90))}catch{}const error=new Error(msg);error.status=resp.status;throw error;}return resp;
+}
+async function doAction(fn,out){if(busy)return;busy=true;buttons();$(out).textContent='Проверка выполняется…';try{await fn()}catch(e){$(out).textContent='Не выполнено: '+safeError(e);note(out,'FAIL',safeError(e))}finally{busy=false;buttons()}}
+async function auth(signup){const email=$('email').value.trim(),password=$('password').value;
+ if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)||password.length<10)throw Error('Нужен корректный email и пароль не короче 10 символов');
+ const resp=await call(signup?'/auth/v1/signup':'/auth/v1/token?grant_type=password',{method:'POST',auth:false,headers:{'content-type':'application/json'},body:JSON.stringify({email,password})});
+ const data=await resp.json();$('password').value='';
+ if(!data.access_token){$('authstatus').textContent='Проверь почту и подтверди регистрацию, затем нажми Войти.';note('auth-signup','PENDING','email confirmation required');return}
+ const u=await call('/auth/v1/user',{headers:{Authorization:'Bearer '+data.access_token}});const user=await u.json();if(!user?.id||user.id!==data.user?.id)throw Error('Не подтверждён ID пользователя');
+ session={token:data.access_token,uid:user.id};$('authstatus').textContent='PASS · Вход подтверждён Supabase Auth. Доступен синтетический тест.';note('real-auth','PASS','signed-in session verified');}
+$('signup').onclick=()=>doAction(()=>auth(true),'authstatus');$('signin').onclick=()=>doAction(()=>auth(false),'authstatus');
+$('signout').onclick=()=>{session=null;$('password').value='';$('authstatus').textContent='Выход выполнен. Токен удалён из памяти страницы.';buttons()};
+function wav(){let rate=16000,count=20000;let b=new ArrayBuffer(44+count*2),d=new DataView(b);let p=0;const str=s=>{for(let j=0;j<s.length;j++)d.setUint8(p++,s.charCodeAt(j))};const u16=n=>{d.setUint16(p,n,true);p+=2};const u32=n=>{d.setUint32(p,n,true);p+=4};str('RIFF');u32(36+count*2);str('WAVE');str('fmt ');u32(16);u16(1);u16(1);u32(rate);u32(rate*2);u16(2);u16(16);str('data');u32(count*2);for(let i=0;i<count;i++)u16(Math.round(1400*Math.sin(2*Math.PI*440*i/rate))&65535);return new Blob([b],{type:'audio/wav'})}
+async function digest(blob){const sha=await crypto.subtle.digest('SHA-256',await blob.arrayBuffer());return Array.from(new Uint8Array(sha),v=>v.toString(16).padStart(2,'0')).join('')}
+function isuuid(x){return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(x)}
+function testValues(){let id=$('testId').value.trim(),owner=$('testOwner').value.trim();if(!isuuid(id)||!isuuid(owner))throw Error('Нужны корректные ID теста и владельца (из ссылки Mac)');return {id,owner,path:owner+'/'+id+'.wav'}}
+async function create(){let id=crypto.randomUUID(),blob=wav(),hash=await digest(blob),path=session.uid+'/'+id+'.wav';
+ await call('/storage/v1/object/'+BUCKET+'/'+path,{method:'POST',body:blob,headers:{'content-type':'audio/wav','x-upsert':'false'}});
+ try{await call('/rest/v1/nova_qa_records',{method:'POST',body:JSON.stringify({user_id:session.uid,test_id:id,audio_sha256:hash,audio_size:blob.size}),headers:{'content-type':'application/json','Prefer':'return=minimal'}})}catch(e){$('createStatus').textContent='Внимание: аудиофайл загружен, но метаданные не сохранились. Удали тест после проверки.';throw e}
+ currentId=id;ownerId=session.uid;$('testId').value=id;$('testOwner').value=ownerId;
+ const url=new URL(location.href);url.search='?test='+encodeURIComponent(id)+'&owner='+encodeURIComponent(ownerId);$('shareUrl').value=url.href;$('copyLink').disabled=false;
+ $('createStatus').textContent='PASS · Синтетический WAV '+blob.size+' байт загружен в приватное хранилище. SHA-256 записан в таблицу. Открой ссылку на iPhone.';
+ note('mac-create-and-upload','PASS','bytes='+blob.size+', test_id='+id);}
+$('create').onclick=()=>doAction(create,'createStatus');
+$('copyLink').onclick=async()=>{const value=$('shareUrl').value;if(!value)return;try{await navigator.clipboard.writeText(value);$('createStatus').textContent='Ссылка скопирована. Отправь её на iPhone.'}catch{$('shareUrl').select();$('createStatus').textContent='Выделена ссылка: скопируй её вручную.'}};
+async function verify(){const {id,owner,path}=testValues();
+ const r=await call('/rest/v1/nova_qa_records?select=test_id,user_id,audio_sha256,audio_size&user_id=eq.'+owner+'&test_id=eq.'+id);
+ const rows=await r.json();if(!Array.isArray(rows))throw Error('Некорректный ответ базы');
+ if(session.uid!==owner){
+  if(rows.length!==0)throw Error('RLS FAIL: другой пользователь прочитал метаданные');
+  try{const file=await call('/storage/v1/object/authenticated/'+BUCKET+'/'+path);const content=await file.blob();throw Error('RLS FAIL: другой пользователь скачал '+content.size+' байт')}catch(e){if(!e.status||e.status<400)throw e;}
+  $('verifyStatus').textContent='PASS · Разные аккаунты: чужие метаданные и приватное аудио недоступны.';note('cross-user-denial','PASS','metadata denied; audio denied');return;
+ }
+ if(rows.length!==1)throw Error('Не найден тест в базе: сначала создай его на Mac под этим аккаунтом');const row=rows[0];
+ const audio=await call('/storage/v1/object/authenticated/'+BUCKET+'/'+path);const blob=await audio.blob(),sha=await digest(blob);
+ if(blob.size!==row.audio_size||sha!==row.audio_sha256)throw Error('Не совпал размер или SHA-256 аудиофайла');
+ if((await blob.slice(0,4).text())!=='RIFF')throw Error('Это не WAV-файл');
+ $('verifyStatus').textContent='PASS · Настоящая авторизация, RLS, перенос аудио и SHA-256 совпали. WAV '+blob.size+' байт.';
+ note('real-device-download','PASS','bytes='+blob.size+', sha256_match=true, test_id='+id);
+}
+$('verify').onclick=()=>doAction(verify,'verifyStatus');
+async function cleanup(){const {id,owner,path}=testValues();if(owner!==session.uid)throw Error('Удаление разрешено только владельцу теста');
+ await call('/storage/v1/object/'+BUCKET+'/'+path,{method:'DELETE'});
+ await call('/rest/v1/nova_qa_records?test_id=eq.'+id+'&user_id=eq.'+owner,{method:'DELETE',headers:{'Prefer':'return=minimal'}});
+ const r=await call('/rest/v1/nova_qa_records?select=test_id&test_id=eq.'+id);const rows=await r.json();if(rows.length!==0)throw Error('После удаления остались метаданные');
+ $('cleanupStatus').textContent='PASS · Тестовое аудио и его метаданные удалены из облака.';note('cleanup','PASS','test_id='+id);}
+$('cleanup').onclick=()=>doAction(cleanup,'cleanupStatus');
+$('report').onclick=()=>{const copy={...report,exportedAt:new Date().toISOString(),checks:report.checks};const blob=new Blob([JSON.stringify(copy,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='NOVA_014_2_QA_REPORT.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
+buttons();
+</script></body></html>

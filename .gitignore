@@ -1,0 +1,13 @@
+*.env
+.env*
+*.wav
+*.mp3
+*.m4a
+*.mp4
+*.aac
+*.flac
+*.pem
+*.key
+node_modules/
+__pycache__/
+.DS_Store
