@@ -46,3 +46,20 @@ If preflight blocks with `PREVIOUS_075_ACK_NOT_RECOGNIZED_ID_DO_NOT_RESUBMIT`, i
 ## Commercial gate
 
 NOT_READY_FOR_COMMERCIAL_AUDIO. A completed 30-second WAV with clear Russian words and listenable vocals must be independently generated and evaluated. Larger LM/DiT weights may improve quality after reproducible trials, but are not presently installed or proven.
+
+## Owner Mac genuine audio gate PASSED — 2026-10-18
+
+Owner's Terminal reported a **real, isolated** ACE-Step inference:
+
+```text
+NOVA076_ISOLATED_SERVER_CHILD_STARTED=YES PORT=18976
+NOVA076_ISOLATED_LM_POST=ONE
+NOVA076_LM_ACK=VALID_ID
+NOVA076_ISOLATED_SYNTH_POST=ONE
+NOVA076_WAV=/Users/a1111/AION_PROJECTS/NOVA_076_HEX_JOB_ID_RECOVERY/ISOLATED_TRIAL_076/NOVA_076_RUSSIAN_VOCAL_REAL.wav
+NOVA076_AUDIO=REAL_WAV_CREATED_LISTEN_PENDING
+NOVA076_RESULT=/Users/a1111/AION_PROJECTS/NOVA_076_HEX_JOB_ID_RECOVERY/ISOLATED_TRIAL_076/RESULT_076.json
+NOVA076_LIVE_SERVER_POST=ZERO LIVE_GATEWAY_POST=ZERO TAILSCALE_MUTATION=ZERO
+```
+
+**Outcome:** local end-to-end native ACE-Step LM → synth → WAV creation **PASS**, based on owner's Mac output. Unlike previous synthetic test files, this WAV is written under persistent `~/AION_PROJECTS/` on the owner's machine. Its perceived audio quality, words intelligibility, timbre, artifacts, and suitability for paid use **have not been evaluated**. The WAV is **not** in GitHub or available to this review until the owner uploads it. Do not claim a commercial-quality model or deploy 076 into live 064 before a real listening benchmark and reverse-comparison of the old generator settings.
