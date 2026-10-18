@@ -22,6 +22,8 @@
 - **Independent snapshot verification by owner (2026-10-18):** `NOVA_068_VERIFY=FULL_COPY_SHA256_PASS`; `FILES_VERIFIED=148805`; `FROZEN_RUNTIME_SOURCE=/Users/a1111/AION_PROJECTS/NOVA_064_LOCK_20261018/local/runtime_source`; `GITHUB_CODE_EXPORT=READY_FOR_REVIEW`; source and desktop deletion gates remain blocked.
 - Next gates: inspect and validate code-only export, safely test launch from archived location without changing live Tailscale routes, and verify other Desktop project dependencies individually.
 
+- Owner Mac confirmed **NOVA 070 desktop launcher installation** on 2026-10-18: `NOVA070_DECISION=DESKTOP_APP_INSTALLED`, `APP_PATH=/Users/a1111/Desktop/NOVA Music Studio.app`, `LAUNCH_URL=http://127.0.0.1:18804/`, `NOVA070_LOCAL_HEALTH=HTTP_OK`, `USER_SONGS_CHANGED=NO`, `HTTPS_CHANGED=NO`, `ORIGINALS_DELETED=ZERO`. This confirms the shortcut was installed and the current gateway answered, **not** a cold restart from the archived source location; local Mac browser storage remains separate from iPhone storage.
+
 ## Preservation rules
 1. **Do not delete Desktop or Downloads originals** from this checkpoint. Desktop root standalone files were **not included** in folder-only archive. Other projects' symlinks and references may still target Desktop.
 2. Existing NOVA 064 HTTPS `18804` and engine `8791` are live; freeze scripts must not kill/restart/switch them, generate songs or alter PWA IndexedDB.
