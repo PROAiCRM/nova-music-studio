@@ -1,36 +1,35 @@
 # NOVA Music Studio — local baseline freeze (2026-10-18)
 
-**State:** OWNER-ACCEPTED LOCAL BASELINE / SOURCE ARCHIVE IN PROGRESS. This branch is a release index, **not** proof that all current Mac source files or private media are backed up on GitHub.
+**State:** OWNER-ACCEPTED LOCAL BASELINE / LOCAL SNAPSHOT RECOVERED / INDEPENDENT RE-VERIFY AND RESTART GATES PENDING. This branch is a release index, **not** proof that the current Mac runtime source or user media have been uploaded to GitHub.
 
 ## Baseline
-- UI and application: **NOVA 064 Final Creative**, with previous NOVA 062 / 061 retained for rollback.
-- Mac CPU generator: **ACE-Step via local service on port 8791**.
-- NOVA local gateway: **port 18804**, private Tailscale HTTPS, only while Mac is running.
-- Mobile: iPhone Safari and installed web app; Mac: browser-based desktop interface.
-- Owner confirmed songs/projects persist and song generation/playback work, subject to Mac/Tailscale availability.
-- No external generator, cloud sync or independent always-on hosting in this frozen baseline.
+- UI and application: **NOVA 064 Final Creative**, with NOVA 062 / 061 retained for rollback.
+- Mac CPU generator: **ACE-Step via local service at 127.0.0.1:8791**.
+- Private NOVA local gateway: **127.0.0.1:18804**, exposed only through the owner's private Tailscale HTTPS, dependent on the Mac remaining on.
+- Client: iPhone Safari and installed web app; Mac browser-based interface.
+- Owner reports generation, player, music and project persistence work locally.
+- No standalone remote backend, cloud sync or independent always-on generator in this release.
 
-## Explicit non-goals
-Do not change approved visual styles, overwrite published GitHub Pages/main, reset Tailscale Serve, clear Safari/PWA IndexedDB, delete existing source archives, or commit private music/secrets/model weights.
+## Local snapshot evidence
+- Snapshot destination: `~/AION_PROJECTS/NOVA_064_LOCK_20261018` on the **same Mac**.
+- First archive attempt NOVA 068 stopped on Tailscale topology-status comparison; do **not** treat its partial result as a completed backup.
+- NOVA 069 resumed that archive safely and reported:
+  - `NOVA_069_DECISION=LOCAL_SNAPSHOT_RECOVERED_SHA256_PASS_RESTART_PENDING`
+  - `COPY_FILES_VERIFIED=148804`, `EXISTING_REUSED=148802`, `NEW_COPIED=2`
+  - `HTTPS_CHANGED=NO`, `ORIGINALS_DELETED=ZERO`, `GENERATION_POST=ZERO`
+  - `SAFE_TO_DELETE_DESKTOP=NO_RESTART_AND_PROJECT_GATE_PENDING`
+- NOVA-only GitHub export generated on Mac: `~/Downloads/NOVA_064_CODE_ONLY_FOR_GITHUB_20261018.zip`; **not yet independently reviewed or committed**.
+- Next gates: run `NOVA_069_SAFE_SNAPSHOT_RESUME/CHECK_RECOVERED_069.command`, inspect and validate code-only export, safely test launch from archived location without changing live Tailscale routes, and verify other Desktop project dependencies individually.
 
-## Mac sources to capture, on owner's machine
-- `~/Downloads/NOVA_064_FINAL_PRIVATE_STAGE/source_copy` (complete runtime code)
-- `~/Downloads/NOVA_064_FINAL_CREATIVE_LAB/` (build manifest)
-- `~/Downloads/NOVA_064_FINAL_PRIVATE_STAGE/` (preview manifest / local private results)
-- `~/Downloads/NOVA_064_FINAL_CREATIVE_GATE/` (build/release scripts)
-- `~/Downloads/NOVA_FINAL_GENERATION_RELEASE_UAKjVLpD/NOVA/` (original launcher and code)
-- `~/Downloads/NOVA_019_CPU_ENGINE/` (local model/runtime, keep **local only**)
-- iPhone: fresh **FULL BACKUP** exported in Files, outside GitHub (not automatically accessible to Mac).
+## Preservation rules
+1. **Do not delete Desktop or Downloads originals** from this checkpoint. Desktop root standalone files were **not included** in folder-only archive. Other projects' symlinks and references may still target Desktop.
+2. Existing NOVA 064 HTTPS `18804` and engine `8791` are live; freeze scripts must not kill/restart/switch them, generate songs or alter PWA IndexedDB.
+3. The snapshot is **one additional copy on the same Mac**, not an off-device disaster-recovery backup; make a separate external/encrypted copy for actual hardware-loss protection.
+4. Do **not** upload full snapshot, generated songs, models, tokens, `.env` files, secret settings, or private server results to this **public** repository.
+5. Full backup exported from iPhone Files remains a separate user-held artifact, not automatically copied by the Mac snapshot.
 
-## Safeguards
-- Keep live 18804 and engine 8791 untouched during freeze.
-- Do not delete/move original Downloads or Desktop sources before verified second copy and restart on Mac.
-- Code-only export is distinct from private music, history, config and model data.
-- Before any public-source commit, review export for secrets and personal content. User media/model weights must never be committed.
-- Desktop cleanup is **not approved** solely because this document exists.
-
-## Future work (NOT implemented in this freeze)
-Lyrics generation, audio editing/stems, cover generation, richer style controls, always-on remote backend / cloud migration, and commercial/licence/security reviews.
+## Deferred product work (not part of freeze)
+Lyrics generation, audio editing/stems, cover generation, richer style controls, a remote generator/always-on backend, commercial licensing, payments, and security / load testing.
 
 ## GitHub release scope
-This branch starts with a documentation-only checkpoint. The **current NOVA 064 runtime source will be added only after** code-only export from the owner's Mac, verification and review. Existing main/GitHub Pages intentionally remain unchanged.
+This branch holds a **documentation-only release index** until the owner supplies the **code-only** ZIP for independent review. Existing `main` and GitHub Pages intentionally remain unchanged. Do not claim GitHub contains a complete restorable NOVA 064 build yet.
