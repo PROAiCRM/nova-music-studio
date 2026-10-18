@@ -1,6 +1,6 @@
 # NOVA Music Studio — local baseline freeze (2026-10-18)
 
-**State:** OWNER-ACCEPTED LOCAL BASELINE / LOCAL SNAPSHOT RECOVERED / INDEPENDENT RE-VERIFY AND RESTART GATES PENDING. This branch is a release index, **not** proof that the current Mac runtime source or user media have been uploaded to GitHub.
+**State:** OWNER-ACCEPTED LOCAL BASELINE / LOCAL SNAPSHOT INDEPENDENTLY VERIFIED / RESTART AND OTHER-PROJECT GATES PENDING. This branch is a release index, **not** proof that the current Mac runtime source or user media have been uploaded to GitHub.
 
 ## Baseline
 - UI and application: **NOVA 064 Final Creative**, with NOVA 062 / 061 retained for rollback.
@@ -19,7 +19,8 @@
   - `HTTPS_CHANGED=NO`, `ORIGINALS_DELETED=ZERO`, `GENERATION_POST=ZERO`
   - `SAFE_TO_DELETE_DESKTOP=NO_RESTART_AND_PROJECT_GATE_PENDING`
 - NOVA-only GitHub export generated on Mac: `~/Downloads/NOVA_064_CODE_ONLY_FOR_GITHUB_20261018.zip`; **not yet independently reviewed or committed**.
-- Next gates: run `NOVA_069_SAFE_SNAPSHOT_RESUME/CHECK_RECOVERED_069.command`, inspect and validate code-only export, safely test launch from archived location without changing live Tailscale routes, and verify other Desktop project dependencies individually.
+- **Independent snapshot verification by owner (2026-10-18):** `NOVA_068_VERIFY=FULL_COPY_SHA256_PASS`; `FILES_VERIFIED=148805`; `FROZEN_RUNTIME_SOURCE=/Users/a1111/AION_PROJECTS/NOVA_064_LOCK_20261018/local/runtime_source`; `GITHUB_CODE_EXPORT=READY_FOR_REVIEW`; source and desktop deletion gates remain blocked.
+- Next gates: inspect and validate code-only export, safely test launch from archived location without changing live Tailscale routes, and verify other Desktop project dependencies individually.
 
 ## Preservation rules
 1. **Do not delete Desktop or Downloads originals** from this checkpoint. Desktop root standalone files were **not included** in folder-only archive. Other projects' symlinks and references may still target Desktop.
