@@ -22,3 +22,21 @@ cd "$HOME/Downloads" && unzip -n NOVA_073_ENGINE_REPLY_DIAG.zip && bash "$HOME/D
 Observe result before any re-POST or patch to NOVA 064. Once actual error/response is known, adapt response handling fail-closed and prove WAV audio improvement by listening.
 
 **NOVA 064**, live localhost gateway 18804, Tailscale and user tracks unchanged. **COMMERCIAL_AUDIO_RELEASE=BLOCKED.**
+
+## Mac owner read-only execution result (2026-10-18)
+
+```text
+NOVA073_DIAG=READ_ONLY_COMPLETE
+ENGINE_HEALTH=OK
+ENGINE_PROPS=OK
+ENGINE_LISTENER_COUNT=1
+OLD_B_RUN_MARKER=TRUE
+NOVA073_LOG_FILES_WITH_SIGNALS=12
+PREVIOUS_POST_BODY_RETURNED=UNKNOWN_NOT_CAPTURED
+POST=ZERO JOB_POLL=ZERO RESTART=ZERO TAILSCALE_MUTATION=ZERO NOVA064_MUTATION=ZERO
+SAFE_TO_RETRY_B=NO_UNKNOWN_QUEUE_STATE
+```
+
+This read-only diagnosis confirms the server is available, **not** why POST /lm failed to return a valid ID. The number 12 describes log files with classified signals, not 12 errors. There is no proof yet of the response body or prior queue status. Do not retry the B trial, delete its marker, poll a guessed job ID, switch the live route, or restart the live engine.
+
+**Required evidence**: owner should attach `~/AION_PROJECTS/NOVA_073_ENGINE_REPLY_DIAG/NOVA_073_READONLY_REPORT.json` for a closer inspection of redacted per-file log metadata. If inconclusive, next implementation is read-only log examination; any future POST needs explicit new owner gate with sanitized response-shape capture.
