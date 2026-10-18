@@ -51,3 +51,21 @@ bash "$HOME/Downloads/NOVA_080_FULL_PRODUCT_AUDIT_SAFE_FIX/STAGE_080_CODE_FIX_ON
 ```
 
 **Do NOT run NOVA 079 generation yet**. First collect NOVA 080 report, review real server source / storage, then owner-verified clone QA. This public commit contains no WAV, user media, GGUF weights, tokens, full source export or private report.
+
+
+## Mac owner execution — STATIC AUDIT PASS (2026-10-18 late)
+
+```text
+NOVA080_PACKAGE_SHA_PASS files=9
+Ran 21 tests in 2.588s
+OK
+NOVA080_AUDIT=STATIC_SOURCE_AUDIT_PASS_BUT_OWNER_GATES_PENDING
+FILES=6 STATIC_FINDINGS=2
+PIN=PASS STAGE=SHA_MATCH
+LIVE_MUTATION=ZERO GEN_POST=ZERO LIBRARY_READ=ZERO
+REPORT=/Users/a1111/AION_PROJECTS/NOVA_080_FULL_PRODUCT_AUDIT_SAFE_FIX/NOVA_080_AUDIT.json
+```
+
+This verifies the source is pinned to archived NOVA 064 and that the stage matches. Do NOT represent this as commercial release PASS or as a deployed fix. Exact per-finding IDs/severities must be read from the owner's private JSON; two prior known issues in source are the Creative Studio overlength prepare guard and an unscoped genre restoration key.
+
+The next action is owner-executed **STAGE_080_CODE_FIX_ONLY.command**, which fails closed unless the original inline script SHA matches and the original static audit report still matches the six source files. It writes only a six-file **non-running candidate** and one-line diff under AION_PROJECTS, with `SAFE_TO_DEPLOY=NO_OWNER_UI_DEVICE_GATE_PENDING`. Existing user music, Tailscale routes, server 8791/18804, Safari/installed PWA IndexedDB, and GitHub main must remain unchanged. The owner must attach sanitized audit/candidate manifest before further code changes to storage/backend.
