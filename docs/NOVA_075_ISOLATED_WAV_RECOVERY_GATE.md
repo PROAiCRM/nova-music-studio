@@ -37,3 +37,15 @@ Only on `NOVA075_PREFLIGHT=ISOLATED_SERVER_READY_FOR_OWNER_ONLY_TRIAL`, no other
 If Mac preflight blocks, inspect just the sanitized block reason. Do not alter the original B marker, re-run existing NOVA 072, or switch public/private routes. **Commercial music quality remains unproven**.
 
 Upstream contract: https://github.com/ServeurpersoCom/acestep.cpp/blob/master/docs/ARCHITECTURE.md
+
+## Owner Mac result — isolated preflight PASS (2026-10-18)
+
+```text
+NOVA075_PREFLIGHT=ISOLATED_SERVER_READY_FOR_OWNER_ONLY_TRIAL
+ACTIVE_LIVE_PID=83725 ISOLATED_PORT=18975
+LM=acestep-5Hz-lm-0.6B-Q8_0.gguf SYNTH=acestep-v15-turbo-Q4_K_M.gguf
+POST=ZERO RESTART=ZERO ORIGINAL_MODEL_WRITES=ZERO NOVA064_MUTATION=ZERO
+REPORT=/Users/a1111/AION_PROJECTS/NOVA_075_ISOLATED_WAV_RECOVERY/PREFLIGHT_075.json
+```
+
+Note: the earlier synthetic test output included paths under `/var/folders/.../T/tmp...`; these are simulated WAV and failures from unit tests, not real audio on owner Mac. The next optional, explicitly confirmed test is `RUN_075_REAL_WAV_OWNER_ONLY.command` when NOVA is idle. No live runtime change and no commercial audio quality acceptance yet.
