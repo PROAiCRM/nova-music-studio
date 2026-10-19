@@ -15,7 +15,7 @@
 - The live generator `8791`, Mac gateway `18804`, NOVA064, local music, installed PWA and published `main` remain unchanged. No UI redesign.
 
 ## Verified package and offline checks
-- Private artifact `NOVA_087_PWA_UPGRADE_SAFE.zip`, SHA256 `d03a4064273d378642f441f0a6f8cc110f295607a293918d104c9ef842c5d9c7`, 65 ZIP entries and 64-file manifest, ZIP CRC PASS.
+- Private artifact `NOVA_087_PWA_UPGRADE_SAFE.zip`, SHA256 `c54d15af3f35d89888645900d733197fdd27bfedb9b85870d6b327ea929a7613`, 66 ZIP entries and 65-file manifest, ZIP CRC PASS.
 - 7/7 Python stage validation tests PASS (full exact 55-file verify, no overwrite, symlink denial, source SHA drift denial, owner stage report gate).
 - Node mocked service worker test PASS: 13 assets precached, query-bust variants, cross-origin and /api/* pass through, non-GET excluded, navigation network-first, no automatic SW takeover or cache deletion.
 - JS syntax PASS for new SW, Bash syntax PASS, source pin diff exactly two files, simulated Mac owner-home staging PASS. **This is offline SW logic, NOT genuine iPhone/Safari SW migration E2E.**
@@ -35,3 +35,5 @@ Verifies exact 55-source-file hashes from existing Mac `~/AION_PROJECTS/NOVA_085
 5. Privacy/licensing/payments/support before commercial release.
 
 **Explicitly not a commercial release, not permission to clear/uninstall iPhone PWA.** This GitHub document contains no models, songs, keys, media or private server config.
+### Final clean-extraction correction
+During independent clean extraction, Python regression tests originally depended on a sibling NOVA085 development directory and failed in a standalone unpack. The final private ZIP now includes a **small, non-secret NOVA085 service-worker fixture** and reconstructs the exact old HTML from the new candidate. Repacked ZIP was independently unpacked and verified: 7 Python tests PASS, mocked SW tests PASS, SHA manifest 65 files PASS, ZIP CRC PASS. Original staging from the owner's pinned 085 directory is unchanged, and the entire candidate remains deploy-blocked. Final SHA256: `c54d15af3f35d89888645900d733197fdd27bfedb9b85870d6b327ea929a7613`.
