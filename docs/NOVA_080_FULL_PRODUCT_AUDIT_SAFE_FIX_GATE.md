@@ -69,3 +69,17 @@ REPORT=/Users/a1111/AION_PROJECTS/NOVA_080_FULL_PRODUCT_AUDIT_SAFE_FIX/NOVA_080_
 This verifies the source is pinned to archived NOVA 064 and that the stage matches. Do NOT represent this as commercial release PASS or as a deployed fix. Exact per-finding IDs/severities must be read from the owner's private JSON; two prior known issues in source are the Creative Studio overlength prepare guard and an unscoped genre restoration key.
 
 The next action is owner-executed **STAGE_080_CODE_FIX_ONLY.command**, which fails closed unless the original inline script SHA matches and the original static audit report still matches the six source files. It writes only a six-file **non-running candidate** and one-line diff under AION_PROJECTS, with `SAFE_TO_DEPLOY=NO_OWNER_UI_DEVICE_GATE_PENDING`. Existing user music, Tailscale routes, server 8791/18804, Safari/installed PWA IndexedDB, and GitHub main must remain unchanged. The owner must attach sanitized audit/candidate manifest before further code changes to storage/backend.
+
+
+## Owner Mac result: pinned code-only candidate staged (2026-10-19)
+
+```text
+NOVA080_PACKAGE_SHA_PASS files=9
+NOVA080_CANDIDATE=CODE_ONLY_STAGED_PINNED_ONE_LINE_FIX
+CHANGED=app/index.html SW=UNCHANGED STORAGE=UNCHANGED LIVE=UNCHANGED
+CANDIDATE=/Users/a1111/AION_PROJECTS/NOVA_080_FULL_PRODUCT_AUDIT_SAFE_FIX/candidate
+CANDIDATE_MANIFEST=/Users/a1111/AION_PROJECTS/NOVA_080_FULL_PRODUCT_AUDIT_SAFE_FIX/CANDIDATE_080_MANIFEST.json
+SAFE_TO_DEPLOY=NO_OWNER_UI_DEVICE_GATE_PENDING
+```
+
+One-line code candidate staged successfully on Mac; **not installed**. Existing published NOVA064 and personal library remain unaffected. A follow-on 081 behavior gate exercises the SHA-pinned 064 JS click handler using an isolated Node VM against both the original and candidate on real owner-Mac snapshots. Other prepare entrypoints, unscoped genre restore, native lyrics-to-generator contract, iPhone PWA history and commercial-quality testing remain open.
