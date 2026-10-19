@@ -29,3 +29,9 @@ Open automatically in Safari; if blocked, manually open `NOVA086_SAFE_URL`; owne
 6. Licensing, privacy, subscriptions/billing and sustained server operation remain unresolved.
 
 **NOVA 085 remains staged-only.** All code/QA work stays separate from approved visual design, user media, GitHub public main and current Tailscale Serve. No private tracks or model weights committed to public GitHub.
+
+## Mac Safari real IndexedDB PASS (owner result, 2026-10-19)
+
+The owner supplied a structured result `gate=NOVA086_ISOLATED_SAFARI_DOM_IDB_V1`, `status=PASS` for the **NOVA085 staged candidate** on a fresh ephemeral localhost origin. **All 11 browser checks passed:** INDEXEDDB_PRESENT, NOVA_BRANDING, APPLE_TOUCH_ICON, SEPARATE_LYRICS_FIELD, 351_REJECTED_WITHOUT_PROJECT, 350_INPUT_EXACT, 350_PREPARED_NEW_DRAFT, RUSSIAN_LYRICS_SAVED, PROJECT_SURVIVES_SAFARI_RELOAD, LYRICS_SURVIVE_SAFARI_RELOAD, PROJECT_VISIBLE_IN_LIBRARY. Report states `live_mutation=false`, `generation_post=0`, `origin_type=ephemeral_localhost_no_live_origin`.
+
+**Gate closed:** Local **Mac Safari synthetic-draft IndexedDB persistence for staged NOVA085**. **Not closed:** pre-existing song/media preservation under live 18804 origin, actual iPhone Safari/standalone PWA SW update/restore, authenticated commercial multiuser API, genuine model sound quality, and production release. Keep live site and user data unchanged.
