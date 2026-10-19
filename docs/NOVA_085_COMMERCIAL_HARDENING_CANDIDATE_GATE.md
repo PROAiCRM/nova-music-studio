@@ -42,3 +42,19 @@ The runner verifies 69 package files; executes 10 new and 31 existing offline te
 - Music copyright/licensing, user consent, payments, support, external remote hosting and performance testing.
 
 **NO_RELEASE / NO_LIVE_SWITCH.** Detailed local Russian reports included inside the package: RELEASE_GATES_085.md, VISUAL_AUDIT_085.md and README_FIRST.md. No private music, model weights, owner personal project files, Supabase configuration or full code published to this public GitHub branch.
+
+## Owner Mac safe staging result — 2026-10-19
+
+```text
+NOVA085_PACKAGE_SHA_PASS files=69
+Ran 10 tests: OK
+Ran 31 tests: OK
+NOVA085_DECISION=ISOLATED_CANDIDATE_STAGED_RELEASE_BLOCKED
+PIN_082_PASS files=52 PIN_085_PASS files=55
+NOVA085_FILES_CHANGED=nova-local.js,local_server.py,manifest.webmanifest,app/index.html,tests/test_local.py,icons/nova-512.png,icons/nova-180.png,icons/nova-192.png
+CANDIDATE=/Users/a1111/AION_PROJECTS/NOVA_085_COMMERCIAL_HARDENING/candidate
+LIVE_MUTATION=ZERO GEN_POST=ZERO USER_MEDIA_READ=ZERO TAILSCALE_MUTATION=ZERO
+SAFE_TO_DEPLOY=NO_SAFARI_PWA_BACKUP_SECURITY_AND_MUSIC_GATES
+```
+
+The candidate is **physically staged on Mac and its code-only hashes match**, not deployed. On its own this does not prove Mac Safari IndexedDB or iPhone installed-PWA preservation. Its unchanged service worker cache version `nova-r64-final-creative-v1` requires safe upgrade/migration/rollback testing before any live switch; the backend job/audio GET endpoints also do not yet implement user authentication/object-level access control. Do not publish it as a multi-user commercial service or overwrite live NOVA 064.
