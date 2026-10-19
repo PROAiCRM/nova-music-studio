@@ -41,3 +41,18 @@ bash "$HOME/Downloads/NOVA_082_PRODUCT_CANDIDATE/OPEN_082_ISOLATED_PREVIEW.comma
 Then `open -a Safari "http://127.0.0.1:18982/#create"` in second terminal. Manually check synthetic idea 350 accepted / 351 rejected, draft genre undo after browser refresh, separate lyrics and a safe unavailable generator prompt. Isolated origin storage differs from both actual 18804 app and iPhone Tailscale PWA; do not use real private songs or delete any browser cache.
 
 **Deployment still blocked** pending real Safari and existing iPhone Safari/installed-PWA full-backup gate, full request contract and commercial sound quality acceptance. Do not alter main branch or deploy private export.
+
+## Owner Mac execution — PASS (2026-10-19)
+
+```text
+NOVA083_PACKAGE_SHA_PASS files=5
+NOVA083_STAGE_MANIFEST=PASS files=52 changed=3
+NOVA083_REAL_JS_HANDLER_TESTS=PASS count=15
+NOVA083_LOCAL_HTTP_SANDBOX=PASS checks=14
+NOVA083_DECISION=STAGED_SOURCE_JS_AND_HTTP_SAFE_PASS_SAFARI_DEVICE_GATES_PENDING
+LIVE_MUTATION=ZERO GENERATION_POST=ZERO USER_MEDIA_READ=ZERO
+SAFE_TO_DEPLOY=NO
+REPORT=/Users/a1111/AION_PROJECTS/NOVA_083_ISOLATED_ACCEPTANCE_GATE/NOVA_083_QA_REPORT.json
+```
+
+This verifies static source pins, mocked JS logic and GET-only isolation on **owner Mac**. It **does not** establish actual Mac Safari behavior, browser IndexedDB persistence, physical iPhone Safari/PWA preservation, original media backup validation, generated song quality, or readiness to deploy. Next step is manually opening the safe isolated NOVA 082 preview on 127.0.0.1:18982 and checking controlled synthetic drafts without touching live site, then identifying outstanding gates. Do not launch a generating backend or deploy the candidate without further checks.
