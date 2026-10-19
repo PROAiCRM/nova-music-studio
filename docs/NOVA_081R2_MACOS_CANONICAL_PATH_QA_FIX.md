@@ -43,3 +43,19 @@ cd "$HOME/Downloads" && unzip -n NOVA_081R2_CANDIDATE_QA_CANONICAL_FIX.zip && ba
 Expected after tests: `NOVA081R2_DECISION=CANDIDATE_UI_CLICK_GUARD_PASS_DEPLOY_BLOCKED`. If blocked again, inspect actual error without disabling symlink checks or deploying candidate.
 
 **Next work:** after actual Mac pass, review complete NOVA 080 audit JSON before attempting project-scoped genre storage and native lyrics workflow; do not deploy yet.
+
+## Mac owner acceptance — PASS (2026-10-19)
+
+```text
+NOVA081R2_PACKAGE_SHA_PASS files=7
+Ran 21 tests in 1.316s
+OK
+NOVA081R2_DECISION=CANDIDATE_UI_CLICK_GUARD_PASS_DEPLOY_BLOCKED
+NOVA081_DECISION=CANDIDATE_UI_CLICK_GUARD_PASS_DEPLOY_BLOCKED
+FILES_VERIFIED=6 CLICK_BEHAVIOR_TESTS=5
+GENRE_UNDO=UNSCOPED_PENDING DESIGN=UNCHANGED LIVE=UNCHANGED SONGS_READ=ZERO POST=ZERO
+SAFE_TO_DEPLOY=NO_BROWSER_API_AND_DEVICE_GATES_PENDING
+REPORT=/Users/a1111/AION_PROJECTS/NOVA_081_CANDIDATE_BEHAVIOR_GATE/NOVA_081_QA_REPORT.json
+```
+
+**Interpretation:** The regression and macOS symlink-path QA tool are now verified on the owner Mac. The safe staged NOVA 080 candidate fixes only the Prepare button overlength guard; not deployed. Other app behavior including project-scoped undo, source integration of `lyrics`, server API and real iPhone PWA preservation remain untested. Do not continue producing symlink/guard QA packages. The next engineering batch requires the actual existing owner-Mac `~/Downloads/NOVA_064_CODE_ONLY_FOR_GITHUB_20261018.zip` together with (optional) `~/AION_PROJECTS/NOVA_080_FULL_PRODUCT_AUDIT_SAFE_FIX/NOVA_080_AUDIT.json` to inspect complete client/server source and issue a single cohesive candidate.
